@@ -14,8 +14,8 @@ RUN apt-get install -y sbt
 RUN apt-get update && \        
   apt-get install -y git
 
+#Cloning DS repo in container
 RUN mkdir /git
-
 ARG BRANCH_NAME
 ARG GITHUB_PAT
 
