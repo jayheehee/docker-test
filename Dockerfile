@@ -1,5 +1,7 @@
 FROM databricksruntime/standard:8.x 
 
+RUN mkdir /databricks/jars                                                      
+
 #Install sbt
 RUN apt-get update
 RUN apt-get install -y curl gnupg2
@@ -16,14 +18,16 @@ RUN apt-get update && \
 
 #Cloning DS repo in container
 RUN mkdir /git
-ARG BRANCH_NAME
+ARG GITHUB_BRANCH_NAME
 ARG GITHUB_PAT
 
-RUN cd /git && git clone -b $BRANCH_NAME https://$GITHUB_PAT:x-oauth-basic@github.com/Iterable/data-science.git
+RUN cd /git && git clone -b $GITHUB_BRANCH_NAME https://$GITHUB_PAT:x-oauth-basic@github.com/Iterable/data-science.git
 
+#Build jar with sbt
+#RUN cd /git/data-science && sbt "project databricksCommon" assembly
+#RUN cp /git/data-science/databricks-common/target/scala-2.12/databricks-common.jar /databricks/jars
 
 #RUN /databricks/conda/envs/dcs-minimal/bin/pip install beautifulsoup4
-#RUN mkdir /databricks/jars                                                      
 
 
 #RUN /databricks/python/bin/pip install selenium
