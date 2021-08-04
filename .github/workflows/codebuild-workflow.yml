@@ -46,5 +46,5 @@ jobs:
           IMAGE_REPO_NAME: testing-gh-actions #In ECR
           IMAGE_TAG: ${{ github.sha }}
           #GITHUB_BRANCH_NAME: $( echo ${GITHUB_REF#refs/heads/})
-          ##GITHUB_BRANCH_NAME: eng:${{ steps.extract_branch.outputs.branch }}
-          GITHUB_BRANCH_NAME: main
+          GITHUB_BRANCH_NAME: eng:${{ steps.extract_branch.outputs.branch }}
+          #GITHUB_BRANCH_NAME: main
