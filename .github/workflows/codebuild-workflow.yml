@@ -17,6 +17,11 @@ jobs:
     if: contains(github.event.head_commit.message, '[docker to ecr]')
     steps:
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+         id: extract_branch
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -40,5 +45,5 @@ jobs:
           AWS_ACCOUNT_ID: 505625506668
           IMAGE_REPO_NAME: testing-gh-actions #In ECR
           IMAGE_TAG: ${{ github.sha }}
-          GITHUB_BRANCH_NAME: $( echo ${GITHUB_REF#refs/heads/})
-          #GITHUB_BRANCH_NAME: main
+          #GITHUB_BRANCH_NAME: $( echo ${GITHUB_REF#refs/heads/})
+          GITHUB_BRANCH_NAME: eng:${{ steps.extract_branch.outputs.branch }}
