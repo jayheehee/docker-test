@@ -18,27 +18,26 @@ jobs:
     steps:
 
       - name: Configure AWS credentials
-        run: echo "${GITHUB_REF#refs/heads/}"
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: us-east-2
-#
-#      - name: Run CodeBuild
-#        uses: aws-actions/aws-codebuild-run-build@v1.0.3
-#        with:
-#          project-name: test-codebuild-2
-#          buildspec-override: .github/workflows/buildspec.yml
-#          env-vars-for-codebuild: |
-#            AWS_DEFAULT_REGION,
-#            AWS_ACCOUNT_ID,
-#            IMAGE_REPO_NAME,
-#            IMAGE_TAG,
-#            GITHUB_BRANCH_NAME
-#        env:
-#          AWS_DEFAULT_REGION: us-east-2
-#          AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
-#          IMAGE_REPO_NAME: testing-gh-actions #In ECR
-#          IMAGE_TAG: ${{ github.sha }}
-#          GITHUB_BRANCH_NAME: ${{ github.repository }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Run CodeBuild
+        uses: aws-actions/aws-codebuild-run-build@v1.0.3
+        with:
+          project-name: test-codebuild-2
+          buildspec-override: .github/workflows/buildspec.yml
+          env-vars-for-codebuild: |
+            AWS_DEFAULT_REGION,
+            AWS_ACCOUNT_ID,
+            IMAGE_REPO_NAME,
+            IMAGE_TAG,
+            GITHUB_BRANCH_NAME
+        env:
+          AWS_DEFAULT_REGION: us-east-2
+          AWS_ACCOUNT_ID: 505625506668
+          IMAGE_REPO_NAME: testing-gh-actions #In ECR
+          IMAGE_TAG: ${{ github.sha }}
+          GITHUB_BRANCH_NAME: ${GITHUB_REF#refs/heads/}
