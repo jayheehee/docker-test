@@ -18,8 +18,7 @@ jobs:
     steps:
 
       - name: Configure AWS credentials
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})" \
-          echo $branch
+        run: echo "$(echo ${GITHUB_REF#refs/heads/})"
 #        uses: aws-actions/configure-aws-credentials@v1
 #        with:
 #          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
