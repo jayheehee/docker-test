@@ -16,10 +16,9 @@ jobs:
       packages: write
     if: contains(github.event.head_commit.message, '[docker to ecr]')
     steps:
+
       - name: Configure AWS credentials
-        run: echo '${{ github.repository }}'
-#
-#      - name: Configure AWS credentials
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
 #        uses: aws-actions/configure-aws-credentials@v1
 #        with:
 #          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -40,6 +39,6 @@ jobs:
 #        env:
 #          AWS_DEFAULT_REGION: us-east-2
 #          AWS_ACCOUNT_ID: 505625506668 #ASK RACHAEL IF THIS GOES IN SECRETS
-#          IMAGE_REPO_NAME: testing-gh-actions
+#          IMAGE_REPO_NAME: testing-gh-actions #In ECR
 #          IMAGE_TAG: ${{ github.sha }}
-#
+#          GITHUB_BRANCH_NAME: ${{ github.repository }}

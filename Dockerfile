@@ -23,23 +23,24 @@ ARG GITHUB_PAT
 
 RUN cd /git && git clone -b $GITHUB_BRANCH_NAME https://$GITHUB_PAT:x-oauth-basic@github.com/Iterable/data-science.git
 
+COPY file.txt .
+
 #Parsing branch name
 RUN IFS='/'; \                                                                  
   i=1; \                                                                        
-  words='github.com/jayheehee/Testing-GH-Actions'; \                            
+  words='jayheehee/docker-test'; \                            
   len=$(echo $words | wc -w); \                                                 
                                                                                 
   repo_name=$(for word in $words; \                                             
-  do                                                                            
-  if [ $i -eq $len ]; \                                                         
-  then                                                                          
+  do if [ $i -eq $len ]; \                                                         
+  then \                                                                         
     echo $word; \                                                               
   fi; \                                                                         
                                                                                 
   i=$(($i + 1)); \                                                              
   done); \                                                                      
                                                                                 
-  echo $repo_name; 
+  echo $repo_name >> file.txt;
 
 #Build jar with sbt
 #RUN cd /git/data-science && sbt "project databricksCommon" assembly
