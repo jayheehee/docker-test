@@ -46,4 +46,4 @@ jobs:
           IMAGE_REPO_NAME: testing-gh-actions #In ECR
           IMAGE_TAG: ${{ github.sha }}
           GITHUB_BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
-          #GITHUB_BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
+          ##GITHUB_BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
