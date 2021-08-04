@@ -21,7 +21,7 @@ RUN mkdir /git
 ARG GITHUB_BRANCH_NAME
 ARG GITHUB_PAT
 
-#RUN cd /git && git clone -b $GITHUB_BRANCH_NAME https://$GITHUB_PAT:x-oauth-basic@github.com/Iterable/data-science.git
+##RUN cd /git && git clone -b $GITHUB_BRANCH_NAME https://$GITHUB_PAT:x-oauth-basic@github.com/Iterable/data-science.git
 RUN cd /git && git clone -b $GITHUB_BRANCH_NAME https://$GITHUB_PAT:x-oauth-basic@github.com/jayheehee/docker-test.git
 
 
