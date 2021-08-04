@@ -1,4 +1,7 @@
 version: 0.2
+env:
+  secrets-manager:
+    GITHUB_PAT: arn:aws:secretsmanager:us-east-2:505625506668:secret:GITHUB_PAT-Ha7gtp
 phases:
   pre_build:
     commands:
