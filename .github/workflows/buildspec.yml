@@ -14,8 +14,7 @@ phases:
       - docker build \
         -t $IMAGE_REPO_NAME:$IMAGE_TAG \
         --build-arg GITHUB_BRANCH_NAME=$GITHUB_BRANCH_NAME \
-        --build-arg GITHUB_PAT=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 .
-        #--build-arg GITHUB_PAT=$GITHUB_PAT .
+        --build-arg GITHUB_PAT=$GITHUB_PAT .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
