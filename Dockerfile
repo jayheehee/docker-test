@@ -26,12 +26,8 @@ RUN cd /git && git clone -b $GITHUB_BRANCH_NAME https://$GITHUB_PAT:x-oauth-basi
 
 
 #Build jar with sbt
-RUN cd /git/docker-test && sbt "project databricksCommon" assembly
 #RUN cd /git/data-science && sbt "project databricksCommon" assembly
-
 #RUN cp /git/data-science/databricks-common/target/scala-2.12/databricks-common.jar /databricks/jars
 #
 #RUN /databricks/conda/envs/dcs-minimal/bin/pip install beautifulsoup4
-#
-#
-#RUN /databricks/python/bin/pip install selenium
+
